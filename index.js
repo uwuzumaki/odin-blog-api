@@ -1,13 +1,14 @@
-const path = require("path");
-const express = require("express");
+import express from "express";
+import router from "./routers/index.js";
 
+// App instantiation
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("123");
-});
+// Routes
+app.use("/post", router.post);
+app.use("/comment", router.comment);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
