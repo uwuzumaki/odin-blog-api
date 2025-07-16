@@ -1,17 +1,13 @@
 import { Router } from "express";
-import authentication from "../authentication/jwt.js";
-import jwt from "jsonwebtoken";
+import postController from "../controller/post.js";
+import passport from "passport";
 
 const router = Router();
 
-router.post("/", authentication.getToken, (req, res) => {
-  jwt.verify(req.token, process.env.JWT_SECRET, (err, data) => {
-    if (err) {
-      res.json({ err });
-    } else {
-      res.json({ data });
-    }
-  });
-});
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  postController.createPost
+);
 
 export default router;
