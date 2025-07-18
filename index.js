@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 
 // Routes
-app.use("/", router.home);
 app.use("/post", router.post);
 app.use("/comment", router.comment);
 app.use("/login", router.auth);

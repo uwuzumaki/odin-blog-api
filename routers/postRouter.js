@@ -4,6 +4,8 @@ import passport from "passport";
 
 const router = Router();
 
+router.get("/", postController.getAllPosts);
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

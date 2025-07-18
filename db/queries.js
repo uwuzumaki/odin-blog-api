@@ -11,4 +11,9 @@ const getAdmin = async (username2) => {
   return admin;
 };
 
-export default { getAdmin };
+const getAllPosts = async () => {
+  const posts = await prisma.post.findMany();
+  return posts;
+};
+
+export default { getAdmin, getAllPosts };
