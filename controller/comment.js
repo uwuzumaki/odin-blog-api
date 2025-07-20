@@ -7,7 +7,9 @@ const createComment = async (req, res) => {
 };
 
 const getAllComments = async (req, res) => {
-  res.json("get all comments");
+  const id = req.params.post_id;
+  const comments = await db.getPostComments(id);
+  res.json(comments);
 };
 
 export default {

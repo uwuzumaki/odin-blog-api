@@ -47,4 +47,20 @@ const createComment = async (user, content, post_id) => {
   return post;
 };
 
-export default { getAdmin, getAllPosts, getOnePost, createPost, createComment };
+const getPostComments = async (id) => {
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId: id,
+    },
+  });
+  return comments;
+};
+
+export default {
+  getAdmin,
+  getAllPosts,
+  getOnePost,
+  createPost,
+  createComment,
+  getPostComments,
+};
