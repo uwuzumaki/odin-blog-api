@@ -1,7 +1,16 @@
-const commentGet = (req, res) => {
-  console.log("comment get");
+import db from "../db/queries.js";
+
+const createComment = async (req, res) => {
+  const id = req.params.post_id;
+  const post = await db.createComment(req.body.user, req.body.content, id);
+  res.json(post);
+};
+
+const getAllComments = async (req, res) => {
+  res.json("get all comments");
 };
 
 export default {
-  commentGet,
+  createComment,
+  getAllComments,
 };

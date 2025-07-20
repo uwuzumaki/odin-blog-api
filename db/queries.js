@@ -35,4 +35,16 @@ const createPost = async (title, content) => {
   return post;
 };
 
-export default { getAdmin, getAllPosts, getOnePost, createPost };
+const createComment = async (user, content, post_id) => {
+  const name = user ? user : "Anonymous";
+  const post = await prisma.comment.create({
+    data: {
+      name,
+      content,
+      postId: post_id,
+    },
+  });
+  return post;
+};
+
+export default { getAdmin, getAllPosts, getOnePost, createPost, createComment };
