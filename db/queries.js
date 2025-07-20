@@ -16,4 +16,23 @@ const getAllPosts = async () => {
   return posts;
 };
 
-export default { getAdmin, getAllPosts };
+const getOnePost = async (id) => {
+  const post = await prisma.post.findUnique({
+    where: {
+      id,
+    },
+  });
+  return post;
+};
+
+const createPost = async (title, content) => {
+  const post = await prisma.post.create({
+    data: {
+      title,
+      content,
+    },
+  });
+  return post;
+};
+
+export default { getAdmin, getAllPosts, getOnePost, createPost };

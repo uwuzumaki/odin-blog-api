@@ -6,6 +6,8 @@ const router = Router();
 
 router.get("/", postController.getAllPosts);
 
+router.get("/:id", postController.getOnePost);
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
