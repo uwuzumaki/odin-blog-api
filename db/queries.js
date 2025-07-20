@@ -35,6 +35,26 @@ const createPost = async (title, content) => {
   return post;
 };
 
+const changeVisibility = async (id) => {
+  const vis = await prisma.post.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  const post = await prisma.post.update({
+    where: {
+      id,
+    },
+    data: {
+      status: {
+        set: !vis.status,
+      },
+    },
+  });
+  return post;
+};
+
 const createComment = async (user, content, post_id) => {
   const name = user ? user : "Anonymous";
   const post = await prisma.comment.create({
@@ -61,6 +81,7 @@ export default {
   getAllPosts,
   getOnePost,
   createPost,
+  changeVisibility,
   createComment,
   getPostComments,
 };

@@ -17,8 +17,20 @@ const createPost = async (req, res) => {
   res.json(post);
 };
 
+const changeVisibility = async (req, res) => {
+  const id = req.params.id;
+  const post = await db.changeVisibility(id);
+  res.json(post);
+};
+
+const deletePost = async (req, res) => {
+  res.json("delete post");
+};
+
 export default {
   getAllPosts,
   getOnePost,
   createPost,
+  changeVisibility,
+  deletePost,
 };

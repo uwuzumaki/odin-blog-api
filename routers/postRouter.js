@@ -8,6 +8,10 @@ router.get("/", postController.getAllPosts);
 
 router.get("/:id", postController.getOnePost);
 
+router.put("/:id", postController.changeVisibility);
+
+router.delete("/:id", postController.deletePost);
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
