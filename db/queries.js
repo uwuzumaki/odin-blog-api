@@ -55,6 +55,16 @@ const changeVisibility = async (id) => {
   return post;
 };
 
+const deletePost = async (id) => {
+  console.log(id);
+  const post = await prisma.post.delete({
+    where: {
+      id,
+    },
+  });
+  return post;
+};
+
 const createComment = async (user, content, post_id) => {
   const name = user ? user : "Anonymous";
   const post = await prisma.comment.create({
@@ -82,6 +92,7 @@ export default {
   getOnePost,
   createPost,
   changeVisibility,
+  deletePost,
   createComment,
   getPostComments,
 };

@@ -24,7 +24,9 @@ const changeVisibility = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  res.json("delete post");
+  const id = req.params.id;
+  const post = await db.deletePost(id);
+  res.json(post);
 };
 
 export default {
