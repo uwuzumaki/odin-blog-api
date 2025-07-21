@@ -1,6 +1,7 @@
 import express from "express";
 import router from "./routers/index.js";
 import passport from "passport";
+import cors from "cors";
 import "dotenv/config";
 
 // App instantiation
@@ -11,6 +12,7 @@ import "./authentication/passport.js";
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.use(passport.initialize());
 
 // Routes
