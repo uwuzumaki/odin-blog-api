@@ -12,7 +12,14 @@ const getAdmin = async (username2) => {
 };
 
 const getAllPosts = async () => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    select: {
+      id: true,
+      title: true,
+      createAt: true,
+      status: true,
+    },
+  });
   return posts;
 };
 
