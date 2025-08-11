@@ -6,9 +6,12 @@ import jwt from "../authentication/jwt.js";
 
 const loginPost = async (req, res) => {
   const token = await jwt.sign(req.body.username, req.body.password);
-  res.json({
-    token,
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "strict",
+    maxAge: 24 * 60 * 60 * 1000,
   });
+  res.json({ token });
 };
 
 // One time registration for Admin user
