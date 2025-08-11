@@ -31,11 +31,21 @@ passport.use(
   })
 );
 
+const cookieExtractor = (req) => {
+  let jwt = null;
+  console.log(req.cookies);
+  if (req && req.cookies) {
+    jwt = req.cookies["token"];
+  }
+
+  return jwt;
+};
+
 passport.use(
   new JWTStrategy(
     {
       secretOrKey: process.env.JWT_SECRET,
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: cookieExtractor,
     },
     async (payload, done) => {
       try {
