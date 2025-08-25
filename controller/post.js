@@ -1,8 +1,16 @@
 import db from "../db/queries.js";
 
 const getAllPosts = async (req, res) => {
-  const posts = await db.getAllPosts();
-  res.json(posts);
+  const page = parseInt(req.query.page) || 1;
+  const limit = 10;
+  const skip = (page - 1) * limit;
+
+  const posts = await db.getAllPosts(skip, limit);
+  res.json({
+    posts: posts.posts,
+    page,
+    totalPages: Math.ceil(posts.total / limit),
+  });
 };
 
 const getOnePost = async (req, res) => {

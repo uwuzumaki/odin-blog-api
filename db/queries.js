@@ -11,16 +11,21 @@ const getAdmin = async (username2) => {
   return admin;
 };
 
-const getAllPosts = async () => {
-  const posts = await prisma.post.findMany({
-    select: {
-      id: true,
-      title: true,
-      createAt: true,
-      status: true,
-    },
-  });
-  return posts;
+const getAllPosts = async (skip, limit) => {
+  const [posts, total] = await Promise.all([
+    prisma.post.findMany({
+      skip,
+      take: limit,
+      select: {
+        id: true,
+        title: true,
+        createAt: true,
+        status: true,
+      },
+    }),
+    prisma.post.count(),
+  ]);
+  return { posts, total };
 };
 
 const getOnePost = async (id) => {
