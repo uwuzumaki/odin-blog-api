@@ -11,9 +11,24 @@ const loginPost = async (req, res) => {
     sameSite: "strict",
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ token });
+  res.json({ token, user: req.body.username });
 };
 
+const verifyGet = async (req, res) => {
+  res.json({ user: req.user.username });
+};
+
+const logoutGet = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "strict",
+    });
+    res.status(200).json({ message: "logged out" });
+  } catch (err) {
+    console.log(err);
+  }
+};
 // One time registration for Admin user
 // const registerPost = async (req, res) => {
 //   console.log(req.body.username);
@@ -31,5 +46,7 @@ const loginPost = async (req, res) => {
 
 export default {
   loginPost,
+  verifyGet,
+  logoutGet,
   //   registerPost,
 };
