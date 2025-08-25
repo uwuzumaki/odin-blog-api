@@ -33,7 +33,6 @@ passport.use(
 
 const cookieExtractor = (req) => {
   let jwt = null;
-  console.log(req.cookies);
   if (req && req.cookies) {
     jwt = req.cookies["token"];
   }
