@@ -98,6 +98,14 @@ const getPostComments = async (id) => {
   return comments;
 };
 
+const deleteComment = async (id) => {
+  const comment = await prisma.comment.delete({
+    where: {
+      id,
+    },
+  });
+};
+
 export default {
   getAdmin,
   getAllPosts,
@@ -107,4 +115,5 @@ export default {
   deletePost,
   createComment,
   getPostComments,
+  deleteComment,
 };
