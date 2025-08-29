@@ -19,6 +19,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://elaborate-sherbet-930a23.netlify.app",
+      "https://leafy-begonia-09ba39.netlify.app",
     ],
     credentials: true,
   })
