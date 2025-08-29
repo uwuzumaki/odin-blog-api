@@ -16,8 +16,7 @@ passport.use(
   new LocalStrategy({ session: false }, async (username, password, done) => {
     try {
       const user = await db.getAdmin(username);
-      console.log(user);
-      console.log(username, password);
+
       if (!user) {
         return done(null, false, { message: "Not admin" });
       }

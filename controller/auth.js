@@ -5,7 +5,11 @@ import jwt from "../authentication/jwt.js";
 // const prisma = new PrismaClient();
 
 const loginPost = async (req, res) => {
+  console.log("got here");
   const token = await jwt.sign(req.body.username, req.body.password);
+  console.log(req.body.username, req.body.password);
+  console.log(req.body);
+  console.log(token);
   res.cookie("token", token, {
     httpOnly: true,
     sameSite: "strict",
