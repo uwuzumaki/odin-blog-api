@@ -21,8 +21,6 @@ passport.use(
         return done(null, false, { message: "Not admin" });
       }
       const match = await bcrypt.compare(password, user.password);
-      console.log(match);
-      console.log("got here");
       if (!match) {
         return done(null, false, { message: "Wrong password" });
       }

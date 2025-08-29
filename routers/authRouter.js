@@ -21,6 +21,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   authController.logoutGet
 );
-// router.post("/register", authController.registerPost);
+router.post("/register", authController.registerPost);
 
 export default router;
