@@ -1,8 +1,8 @@
 import jwt from "../authentication/jwt.js";
-// import bcrypt from "bcryptjs";
-// import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 const loginPost = async (req, res) => {
   console.log("got here");
